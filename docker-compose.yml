@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # Database MySQL
+  db:
+    image: mysql:8.0
+    container_name: cara_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: cara_db
+    volumes:
+      # Lưu trữ dữ liệu DB vĩnh viễn
+      - db_data:/var/lib/mysql
+      # Import dữ liệu ban đầu
+      - ./database/cara_db.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - cara_network
+
+  # Web Server PHP
+  web:
+    build: .
+    container_name: cara_web
+    restart: always
+    ports:
+      - "8088:80" # Truy cập tại localhost:8088
+    depends_on:
+      - db
+    networks:
+      - cara_network
+
+# Mạng nội bộ
+networks:
+  cara_network:
+    driver: bridge
+
+# Phân vùng lưu trữ
+volumes:
+  db_data:
