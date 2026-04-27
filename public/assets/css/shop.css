@@ -1,6 +1,4 @@
-/* =========================================
-   PAGE HEADER (Shop, Blog, About, Contact)
-   ========================================= */
+/* 1. PAGE HEADER (Shop, Blog, About, Contact) */
 #page-header {
   background-image: url("../img/banner/b1.jpg");
   width: 100%;
@@ -18,20 +16,16 @@
   color: #fff;
 }
 
-/* Các biến thể Header cho trang khác (Optional) */
-/* Ví dụ: Trang About dùng hình khác */
+/* Các biến thể Header cho trang khác */
 #page-header.about-header {
   background-image: url("../img/about/banner.png");
 }
 
-/* Ví dụ: Trang Blog dùng hình khác */
 #page-header.blog-header {
   background-image: url("../img/banner/b19.jpg");
 }
 
-/* =========================================
-   PAGINATION
-   ========================================= */
+/* 2. PAGINATION */
 #pagination {
   text-align: center;
 }
@@ -43,9 +37,9 @@
   border-radius: 4px;
   color: #fff;
   font-weight: 600;
-  display: inline-block; /* Đảm bảo padding hoạt động tốt */
-  margin: 0 5px; /* Tạo khoảng cách giữa các nút */
-  transition: 0.2s ease; /* Hiệu ứng chuyển màu mượt */
+  display: inline-block;
+  margin: 0 5px;
+  transition: 0.2s ease;
 }
 
 #pagination a i {
@@ -53,8 +47,7 @@
   font-weight: 600;
 }
 
-/* Hiệu ứng Hover cho phân trang */
 #pagination a:hover {
-  background-color: var(--text-color); /* Chuyển sang màu đen khi hover */
+  background-color: var(--text-color);
   color: #fff;
 }

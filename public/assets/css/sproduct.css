@@ -1,11 +1,10 @@
-/* =========================================
-   SINGLE PRODUCT DETAILS
-   ========================================= */
+/* 1. SINGLE PRODUCT DETAILS (Layout) */
 #prodetails {
   display: flex;
   margin-top: 20px;
 }
 
+/* 2. PRODUCT IMAGE (Cột Trái) */
 #prodetails .single-pro-image {
   width: 40%;
   margin-right: 50px;
@@ -21,6 +20,7 @@
   cursor: pointer;
 }
 
+/* 3. PRODUCT INFO (Cột Phải) */
 #prodetails .single-pro-details {
   width: 50%;
   padding-top: 30px;
@@ -34,12 +34,13 @@
   font-size: 26px;
 }
 
+/* Form Elements */
 #prodetails .single-pro-details select {
   display: block;
   padding: 5px 10px;
   margin-bottom: 10px;
-  border: 1px solid #e1e1e1; /* Thêm border để rõ ràng hơn */
-  border-radius: 4px; /* Bo góc nhẹ cho hiện đại */
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
   outline: none;
 }
 
@@ -54,7 +55,7 @@
   outline: none;
 }
 
-/* Hiệu ứng khi click vào ô số lượng */
+/* Hiệu ứng Focus */
 #prodetails .single-pro-details input:focus {
   border-color: var(--primary-color);
 }
@@ -64,4 +65,6 @@
   color: #fff;
   border-radius: 4px;
   padding: 10px 8px;
+  border: none;       
+  cursor: pointer;
 }

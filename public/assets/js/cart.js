@@ -1,71 +1,80 @@
 /* public/assets/js/cart.js */
 
-// DEBUG: Dòng này để kiểm tra xem trình duyệt đã nhận file JS mới chưa
-console.log("=== FILE CART.JS MỚI ĐÃ ĐƯỢC LOAD ===");
+console.log("=== CART.JS LOADED ===");
 
+// 1. CẬP NHẬT SỐ LƯỢNG SẢN PHẨM
 function updateCart(id, newQty) {
-    if (newQty < 1) {
-        alert("Số lượng tối thiểu là 1");
-        location.reload(); 
-        return;
-    }
+  // Kiểm tra đầu vào
+  if (newQty < 1) {
+    alert("Số lượng tối thiểu là 1");
+    location.reload(); // Reset lại số cũ nếu nhập sai
+    return;
+  }
 
-    let formData = new FormData();
-    formData.append('action', 'update');
-    formData.append('id', id);
-    formData.append('quantity', newQty);
+  // Chuẩn bị dữ liệu gửi đi
+  let formData = new FormData();
+  formData.append('action', 'update');
+  formData.append('id', id);
+  formData.append('quantity', newQty);
 
-    fetch('handle_cart.php', { method: 'POST', body: formData })
+  // Gọi API xử lý
+  fetch('handle_cart.php', {
+      method: 'POST',
+      body: formData
+    })
     .then(response => response.json())
     .then(data => {
-        if(data.status === 'success') {
-            location.reload(); 
-        } else {
-            alert("Lỗi Server: " + data.message);
-        }
+      if (data.status === 'success') {
+        location.reload(); // Load lại trang để cập nhật Tổng tiền
+      } else {
+        alert("Lỗi Server: " + data.message);
+      }
     })
     .catch(err => console.error('Error:', err));
 }
 
+// 2. XÓA SẢN PHẨM KHỎI GIỎ
 function removeFromCart(id) {
-    console.log("Đang xóa sản phẩm ID:", id); // Debug log
+  console.log("Đang xóa sản phẩm ID:", id);
 
-    if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) {
-        let formData = new FormData();
-        formData.append('action', 'remove');
-        formData.append('id', id);
+  if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) {
+    let formData = new FormData();
+    formData.append('action', 'remove');
+    formData.append('id', id);
 
-        fetch('handle_cart.php', { method: 'POST', body: formData })
-        .then(response => {
-            // Kiểm tra xem phản hồi có phải JSON không
-            if (!response.ok) {
-                throw new Error("HTTP error " + response.status);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log("Phản hồi từ Server:", data); // Debug log
-            
-            if(data.status === 'success') {
-                // Xóa thành công -> Reload lại trang để PHP hiển thị lại
-                window.location.reload(); 
-            } else {
-                alert("Không thể xóa: " + data.message);
-            }
-        })
-        .catch(err => {
-            console.error('Lỗi kết nối:', err);
-            alert("Có lỗi xảy ra khi gọi Server. Xem Console để biết chi tiết.");
-        });
-    }
+    fetch('handle_cart.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        // Kiểm tra HTTP Status trước
+        if (!response.ok) {
+          throw new Error("HTTP error " + response.status);
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.status === 'success') {
+          // Xóa thành công -> Reload lại trang
+          window.location.reload();
+        } else {
+          alert("Không thể xóa: " + data.message);
+        }
+      })
+      .catch(err => {
+        console.error('Lỗi kết nối:', err);
+        alert("Có lỗi xảy ra khi gọi Server. Xem Console để biết chi tiết.");
+      });
+  }
 }
 
+// 3. KIỂM TRA ĐĂNG NHẬP KHI THANH TOÁN
 function checkCheckout() {
-    if (typeof isLoggedIn !== 'undefined' && !isLoggedIn) {
-        if(confirm("Bạn cần đăng nhập để thanh toán. Đi tới trang đăng nhập?")) {
-            window.location.href = "login.php";
-        }
-    } else {
-        window.location.href = "checkout.php";
+  if (typeof isLoggedIn !== 'undefined' && !isLoggedIn) {
+    if (confirm("Bạn cần đăng nhập để thanh toán. Đi tới trang đăng nhập?")) {
+      window.location.href = "login.php";
     }
+  } else {
+    window.location.href = "checkout.php";
+  }
 }

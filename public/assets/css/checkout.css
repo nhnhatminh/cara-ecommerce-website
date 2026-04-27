@@ -1,18 +1,85 @@
 /* CHECKOUT LAYOUT */
-.checkout-grid { display: flex; gap: 30px; flex-wrap: wrap; margin-top: 30px; }
-.checkout-left { flex: 2; }
-.checkout-right { flex: 1; background: #f9f9f9; padding: 20px; border: 1px solid #e1e1e1; height: fit-content; }
-.form-group { margin-bottom: 15px; }
-.form-group label { display: block; margin-bottom: 5px; font-weight: 600; }
-.form-group input, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ddd; outline: none; }
-.payment-option { margin-bottom: 10px; padding: 10px; border: 1px solid #ddd; cursor: pointer; display: flex; align-items: center; gap: 10px; }
-.payment-option:hover { background: #f0f0f0; }
-.qr-placeholder { text-align: center; display: none; margin-top: 10px; width: 100%; }
-input[type="radio"]:checked ~ .qr-placeholder { display: block; }
-.step-title { margin-bottom: 15px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
 
-/* RESPONSIVE */
+/* 1. Layout Grid (Trái: Form, Phải: Tổng tiền) */
+.checkout-grid {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.checkout-left {
+  flex: 2;
+}
+
+.checkout-right {
+  flex: 1;
+  background: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #e1e1e1;
+  height: fit-content;
+}
+
+/* 2. Form Styles */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+/* 3. Payment Options */
+.payment-option {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.payment-option:hover {
+  background: #f0f0f0;
+}
+
+/* Hiển thị QR khi chọn radio button tương ứng */
+.qr-placeholder {
+  text-align: center;
+  display: none;
+  margin-top: 10px;
+  width: 100%;
+}
+
+input[type="radio"]:checked ~ .qr-placeholder {
+  display: block;
+}
+
+.step-title {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+/* 4. RESPONSIVE */
 @media (max-width: 799px) {
-  .checkout-grid { flex-direction: column; }
-  .checkout-left, .checkout-right { width: 100%; }
+  .checkout-grid {
+    flex-direction: column;
+  }
+
+  .checkout-left,
+  .checkout-right {
+    width: 100%;
+  }
 }

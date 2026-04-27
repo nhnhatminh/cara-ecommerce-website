@@ -1,13 +1,11 @@
 <?php
-session_start(); // Khởi động session để biết đang hủy cái gì
+  session_start();
 
-// Xóa tất cả biến session
-$_SESSION = array();
+  unset($_SESSION['user_id']);
+  unset($_SESSION['user_name']);
+  unset($_SESSION['user_role']);
+  unset($_SESSION['user_email']);
 
-// Hủy session
-session_destroy();
-
-// Chuyển hướng về trang đăng nhập
-header("Location: login.php");
-exit;
+  header("Location: login.php");
+  exit;
 ?>

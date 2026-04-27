@@ -1,31 +1,24 @@
 <?php 
   session_start();
-  // 1. Cấu hình & Kết nối Database
   $page = 'home';
 
-  // Khai báo CSS riêng cho trang chủ
   $extraCss = 'assets/css/home.css';
 
   require_once '../config/db.php'; 
 
   // 2. Logic lấy dữ liệu từ Database
-
-  // Lấy 8 Sản phẩm Nổi bật (Featured = 1)
+  // Lấy 8 Sản phẩm Nổi bật 
   try {
-      // Chỉ lấy 8 sản phẩm để hiển thị đẹp trên layout 4x2
       $sql_featured = "SELECT * FROM products WHERE featured = 1 LIMIT 8";
       $stmt_featured = $pdo->prepare($sql_featured);
       $stmt_featured->execute();
       $featured_products = $stmt_featured->fetchAll(PDO::FETCH_ASSOC);
   } catch (PDOException $e) {
       $featured_products = [];
-      // Ghi log lỗi nếu cần: error_log($e->getMessage());
   }
 
-  // Lấy 8 Sản phẩm Mới nhất (Sắp xếp theo ngày tạo giảm dần)
+  // Lấy 8 Sản phẩm Mới nhất 
   try {
-      // Lấy những sản phẩm KHÔNG phải nổi bật, hoặc lấy tất cả sắp xếp theo mới nhất tùy bạn
-      // Ở đây tôi lấy top 8 mới nhất bất kể nổi bật hay không
       $sql_new = "SELECT * FROM products ORDER BY created_at DESC LIMIT 8";
       $stmt_new = $pdo->prepare($sql_new);
       $stmt_new->execute();

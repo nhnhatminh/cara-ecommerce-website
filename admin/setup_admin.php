@@ -1,36 +1,43 @@
 <?php
 require_once '../config/db.php';
 
-// Cấu hình tài khoản Admin muốn tạo
 $full_name = "Minh Admin";
-$email = "admin@gmail.com";
-$password_plain = "Admin@1234"; // Mật khẩu bạn muốn đặt
+$email     = "admin@gmail.com";
+$password  = "Admin@1234";
 
-// 1. Kiểm tra xem email này đã tồn tại chưa
-$stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+$stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
 $stmt->execute([$email]);
-$user = $stmt->fetch();
 
-if ($user) {
-    echo "<h3>Tài khoản $email đã tồn tại! Không thể tạo thêm.</h3>";
+if ($stmt->fetch()) {
+  echo "<h3 style='color:red'>Tài khoản $email đã tồn tại!</h3>";
 } else {
-    // 2. Mã hóa mật khẩu (Chuẩn bảo mật)
-    // password_hash tạo ra một chuỗi ký tự ngẫu nhiên không thể dịch ngược
-    $password_hashed = password_hash($password_plain, PASSWORD_DEFAULT);
-    
-    // 3. Insert vào Database với role = 1 (Admin)
-    $sql = "INSERT INTO users (full_name, email, password, role) VALUES (?, ?, ?, 1)";
-    $stmt = $pdo->prepare($sql);
-    
-    if ($stmt->execute([$full_name, $email, $password_hashed])) {
-        echo "<h2 style='color:green'>Tạo Admin thành công!</h2>";
-        echo "<p>Email: <b>$email</b></p>";
-        echo "<p>Mật khẩu: <b>$password_plain</b></p>";
-        echo "<p>Role: <b>1 (Admin)</b></p>";
-        echo "<br><a href='login.php'>Bấm vào đây để Đăng nhập</a>";
-        echo "<br><br><b style='color:red'>LƯU Ý QUAN TRỌNG: Hãy xóa file setup_admin.php này ngay sau khi tạo xong!</b>";
-    } else {
-        echo "Có lỗi xảy ra khi tạo tài khoản.";
-    }
+  
+  $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+  
+  $sql = "INSERT INTO users (full_name, email, password, role) VALUES (?, ?, ?, 1)";
+  $stmt = $pdo->prepare($sql);
+  
+  if ($stmt->execute([$full_name, $email, $hashed_password])) {
+    ?>
+    <div style="font-family: sans-serif; line-height: 1.6; padding: 20px;">
+      <h2 style="color:green">✔ Tạo Admin thành công!</h2>
+      <ul>
+        <li>Email: <b><?php echo $email; ?></b></li>
+        <li>Password: <b><?php echo $password; ?></b></li>
+        <li>Role: <b>Administrator (1)</b></li>
+      </ul>
+      
+      <p>
+        <a href="login.php" style="text-decoration:none; background:#088178; color:white; padding:10px 15px; border-radius:5px;">
+          Đến trang Đăng nhập
+        </a>
+      </p>
+      
+      <hr>
+    </div>
+    <?php
+  } else {
+    echo "<h3>Lỗi: Không thể tạo tài khoản vào Database.</h3>";
+  }
 }
 ?>

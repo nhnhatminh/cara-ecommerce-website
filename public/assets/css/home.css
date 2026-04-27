@@ -1,6 +1,4 @@
-/* =========================================
-   HERO SECTION
-   ========================================= */
+/* 1. HERO SECTION */
 #hero {
   background-image: url("../img/hero4.png");
   height: 90vh;
@@ -34,9 +32,7 @@
   font-size: 15px;
 }
 
-/* =========================================
-   FEATURE SECTION
-   ========================================= */
+/* 2. FEATURE SECTION */
 #feature {
   display: flex;
   align-items: center;
@@ -72,32 +68,16 @@
   background-color: #fddde4;
 }
 
-/* Feature Box Background Colors */
-#feature .fe-box:nth-child(2) h6 {
-  background-color: #cdebbc;
-}
+/* Màu nền từng box feature */
+#feature .fe-box:nth-child(2) h6 { background-color: #cdebbc; }
+#feature .fe-box:nth-child(3) h6 { background-color: #d1e8f2; }
+#feature .fe-box:nth-child(4) h6 { background-color: #cdd4f8; }
+#feature .fe-box:nth-child(5) h6 { background-color: #f6dbf6; }
+#feature .fe-box:nth-child(6) h6 { background-color: #fff2e5; }
 
-#feature .fe-box:nth-child(3) h6 {
-  background-color: #d1e8f2;
-}
+/* 3. BANNERS */
 
-#feature .fe-box:nth-child(4) h6 {
-  background-color: #cdd4f8;
-}
-
-#feature .fe-box:nth-child(5) h6 {
-  background-color: #f6dbf6;
-}
-
-#feature .fe-box:nth-child(6) h6 {
-  background-color: #fff2e5;
-}
-
-/* =========================================
-   BANNERS (Home Page)
-   ========================================= */
-
-/* Main Banner (Mid-page) */
+/* Banner chính giữa */
 #banner {
   display: flex;
   flex-direction: column;
@@ -126,7 +106,7 @@
   color: #ef3636;
 }
 
-/* Small Banners (2 Columns) */
+/* Banner nhỏ (2 cột) */
 #sm-banner {
   display: flex;
   justify-content: space-between;
@@ -170,7 +150,7 @@
   padding-bottom: 15px;
 }
 
-/* Bottom Banners (3 Columns) */
+/* Banner dưới (3 cột) */
 #banner3 {
   display: flex;
   justify-content: space-between;
