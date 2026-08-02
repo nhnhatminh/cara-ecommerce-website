@@ -1,29 +1,9 @@
-<<<<<<< HEAD
-version: '3.8'
-
 services:
-  # Database MySQL
-=======
-services:
->>>>>>> e95eab8 (feat: Cap nhat docker, gitignore, README cho du an Cara Ecommerce Website v1.0)
   db:
     image: mysql:8.0
     container_name: cara_mysql
     restart: always
     environment:
-<<<<<<< HEAD
-      MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: cara_db
-    volumes:
-      # Lưu trữ dữ liệu DB vĩnh viễn
-      - db_data:/var/lib/mysql
-      # Import dữ liệu ban đầu
-      - ./database/cara_db.sql:/docker-entrypoint-initdb.d/init.sql
-    networks:
-      - cara_network
-
-  # Web Server PHP
-=======
       MYSQL_ROOT_PASSWORD: Cara@1234
       MYSQL_DATABASE: cara_ecommerce_db
       MYSQL_USER: cara_admin
@@ -36,15 +16,11 @@ services:
     networks:
       - cara_network
 
->>>>>>> e95eab8 (feat: Cap nhat docker, gitignore, README cho du an Cara Ecommerce Website v1.0)
   web:
     build: .
     container_name: cara_web
     restart: always
     ports:
-<<<<<<< HEAD
-      - "8088:80" # Truy cập tại localhost:8088
-=======
       - "8082:80"
     environment:
       DB_HOST: db
@@ -52,23 +28,14 @@ services:
       DB_NAME: cara_ecommerce_db
       DB_USER: cara_admin
       DB_PASS: Cara@1234
->>>>>>> e95eab8 (feat: Cap nhat docker, gitignore, README cho du an Cara Ecommerce Website v1.0)
     depends_on:
       - db
     networks:
       - cara_network
 
-<<<<<<< HEAD
-# Mạng nội bộ
-=======
->>>>>>> e95eab8 (feat: Cap nhat docker, gitignore, README cho du an Cara Ecommerce Website v1.0)
 networks:
   cara_network:
     driver: bridge
 
-<<<<<<< HEAD
-# Phân vùng lưu trữ
-=======
->>>>>>> e95eab8 (feat: Cap nhat docker, gitignore, README cho du an Cara Ecommerce Website v1.0)
 volumes:
   db_data:

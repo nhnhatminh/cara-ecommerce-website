@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-FROM php:8.2-apache
-
-RUN docker-php-ext-install mysqli pdo pdo_mysql
-
-RUN a2enmod rewrite
-
-COPY . /var/www/html/
-
-RUN chown -R www-data:www-data /var/www/html
-
-=======
 # Sử dụng PHP 8.2 kết hợp Apache làm nền tảng
 FROM php:8.2-apache
 
@@ -26,5 +14,4 @@ COPY . /var/www/html/
 RUN chown -R www-data:www-data /var/www/html
 
 # Port mặc định mà Container sẽ mở
->>>>>>> e95eab8 (feat: Cap nhat docker, gitignore, README cho du an Cara Ecommerce Website v1.0)
 EXPOSE 80
