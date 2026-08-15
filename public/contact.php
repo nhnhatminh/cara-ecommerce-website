@@ -87,7 +87,7 @@ include '../includes/header.php';
     <div class="people">
         <div>
             <img src="assets/img/people/default-pfp.png" alt="">
-            <p><span>Trương Tam Phong</span> Senior Marketing Manager <br> Phone: +84 123 123 123 <br> Email: phongtt56@cara.com</p>
+            <p><span>Trương Thanh Tình</span> Senior Marketing Manager <br> Phone: +84 123 123 123 <br> Email: phongtt56@cara.com</p>
         </div>
         <div>
             <img src="assets/img/people/default-pfp.png" alt="">
@@ -95,7 +95,7 @@ include '../includes/header.php';
         </div>
         <div>
             <img src="assets/img/people/default-pfp.png" alt="">
-            <p><span>Kỷ Hiểu Phù</span> Customer Support <br> Phone: +84 123 123 125 <br> Email: khp2305@cara.com</p>
+            <p><span>Nguyễn Ngọc Lan</span> Customer Support <br> Phone: +84 123 123 125 <br> Email: khp2305@cara.com</p>
         </div>
     </div>
 </section>
